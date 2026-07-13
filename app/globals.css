@@ -906,3 +906,308 @@ body {
     padding: 8% 8%;
   }
 }
+
+/* =======================================================
+   PREMIUM CREDENTIALS & ROLES SECTION
+   ======================================================= */
+
+.premium-credentials-section {
+  position: relative;
+  background: var(--bg);
+  min-height: 80vh;
+  padding: clamp(100px, 12vw, 160px) clamp(24px, 8vw, 120px);
+  border-top: 1px solid rgba(25, 55, 92, 0.1);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.premium-bg-decoration {
+  position: absolute;
+  inset: 0;
+  color: var(--navy);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.premium-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.premium-columns {
+  display: flex;
+  gap: clamp(40px, 8vw, 80px);
+  align-items: flex-start;
+  margin-bottom: clamp(60px, 10vw, 100px);
+}
+
+.premium-left-col {
+  flex: 0 0 55%;
+  max-width: 720px;
+}
+
+.premium-right-col {
+  flex: 1;
+}
+
+.premium-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+/* =======================================================
+   PREMIUM CREDENTIALS & ROLES SECTION
+   ======================================================= */
+
+.premium-credentials-section {
+  position: relative;
+  background: var(--bg);
+  min-height: 80vh;
+  padding: clamp(100px, 12vw, 160px) clamp(24px, 8vw, 120px);
+  border-top: 1px solid rgba(25, 55, 92, 0.1);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.premium-bg-decoration {
+  position: absolute;
+  inset: 0;
+  color: var(--navy);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.premium-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1600px; /* Made larger */
+  width: 95%;
+  margin: 0 auto;
+}
+
+.bento-layout {
+  display: flex;
+  align-items: stretch;
+  /* Connected bento design */
+  gap: 0;
+  background: transparent;
+  overflow: hidden; /* Keeps outer edges clean with margin collapse */
+}
+
+.bento-box {
+  position: relative;
+  overflow: hidden; /* For curtain wipe */
+  background: transparent;
+  border: 1px solid rgba(25, 55, 92, 0.15); /* Slightly darker border to ensure they look connected */
+  /* Border collapse effect */
+  margin-left: -1px;
+  margin-top: -1px;
+  
+  transition: background-color 0.4s ease;
+  will-change: transform;
+}
+
+.bento-main {
+  flex: 0 0 50%;
+  padding: 64px; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+  z-index: 2; /* To keep borders above */
+}
+
+
+.bento-right-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr; /* Stretch to fill height */
+  gap: 0;
+}
+
+.premium-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.premium-heading {
+  margin: 0 0 32px;
+  font-family: var(--font-sora), var(--font-inter), Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hero-text);
+}
+
+.premium-paragraph {
+  margin: 0 0 32px;
+  font-size: clamp(1.05rem, 1.2vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--navy);
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.premium-paragraph.intro-paragraph {
+  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+  line-height: 1.6;
+  opacity: 1;
+  margin-bottom: 40px;
+}
+
+.premium-paragraph strong {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* QUALIFICATIONS LIST */
+.qualifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto; /* Push to bottom of bento box */
+  padding-top: 24px;
+  border-top: 1px solid rgba(25, 55, 92, 0.1);
+}
+
+.qual-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.qual-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--hero-text);
+}
+
+/* CARDS */
+.premium-card {
+  padding: 48px 40px; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.premium-card:hover, .bento-main:hover {
+  background: rgba(25, 55, 92, 0.03); /* Subtle hover since background is transparent */
+}
+
+.card-icon-wrapper {
+  margin-bottom: 24px;
+  color: var(--hero-text);
+}
+
+.card-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.card-title {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 4px;
+  opacity: 0.8;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--navy);
+  margin: 0;
+  opacity: 0.65;
+  line-height: 1.4;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .bento-layout {
+    flex-direction: column;
+  }
+  
+  .bento-main {
+    flex: 1;
+    width: 100%;
+  }
+
+  .bento-right-grid {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .premium-credentials-section {
+    padding: 84px 22px;
+  }
+
+  .bento-main {
+    padding: 32px 24px;
+  }
+
+  .bento-right-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .premium-heading {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 24px;
+  }
+}
+
+/* BENTO TINTS */
+.bento-main { background-color: #F87171; } /* Vibrant Red */
+.bento-tl { background-color: #60A5FA; }   /* Vibrant Blue */
+.bento-tr { background-color: #A78BFA; }   /* Vibrant Violet */
+.bento-bl { background-color: #34D399; }   /* Vibrant Emerald */
+.bento-br { background-color: #FBBF24; }   /* Vibrant Amber */
+
+.bento-main:hover { background-color: #EF4444; }
+.bento-tl:hover { background-color: #3B82F6; }
+.bento-tr:hover { background-color: #8B5CF6; }
+.bento-bl:hover { background-color: #10B981; }
+.bento-br:hover { background-color: #F59E0B; }
+
+/* OVERRIDE TEXT COLOR FOR VIBRANT BENTO BOXES */
+.bento-box .premium-heading,
+.bento-box .premium-paragraph,
+.bento-box .premium-paragraph strong,
+.bento-box .premium-eyebrow,
+.bento-box .qual-item,
+.bento-box .card-title,
+.bento-box .card-subtitle,
+.bento-box .card-desc,
+.bento-box .card-icon-wrapper {
+  color: #ffffff;
+}
+
+.bento-box .qual-dot {
+  background-color: #ffffff;
+}
+
