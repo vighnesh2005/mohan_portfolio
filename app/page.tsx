@@ -417,9 +417,9 @@ export default function Home() {
       const slides = macbookWrapper.querySelectorAll('.macbook-service-slide');
       if (!macbookStickyEl || slides.length === 0) return;
 
-      // Hide all slides initially except the first
-      gsap.set(slides, { opacity: 0 });
-      gsap.set(slides[0], { opacity: 1 });
+      // Hide all slides initially except the first, push them down for the slide-up effect
+      gsap.set(slides, { opacity: 0, yPercent: 100 });
+      gsap.set(slides[0], { opacity: 1, yPercent: 0 });
 
       const macbookTimeline = gsap.timeline({
         scrollTrigger: {
@@ -470,13 +470,27 @@ export default function Home() {
       }
 
       // Phase 2: Cycle through slides (1 → 3.5 in timeline)
-      const slideDuration = 2.5 / slides.length;
+      const cycleDuration = 2.5 / (slides.length - 1);
+      const animDuration = cycleDuration * 0.7; // 70% of the cycle is animating, 30% is a pause
+      
       for (let i = 0; i < slides.length - 1; i++) {
-        const startTime = 1 + i * slideDuration;
-        // Fade out current slide
-        macbookTimeline.to(slides[i], { opacity: 0, duration: slideDuration * 0.4 }, startTime);
-        // Fade in next slide
-        macbookTimeline.fromTo(slides[i + 1], { opacity: 0 }, { opacity: 1, duration: slideDuration * 0.4 }, startTime + slideDuration * 0.3);
+        // Start time for the transition (adds a pause so the user can read the slide)
+        const startTime = 1 + (i * cycleDuration) + (cycleDuration * 0.15);
+        
+        // Old slide moves up and fades out
+        macbookTimeline.to(
+          slides[i], 
+          { yPercent: -100, opacity: 0, duration: animDuration, ease: 'power2.inOut' }, 
+          startTime
+        );
+        
+        // New slide moves up from the bottom and fades in
+        macbookTimeline.fromTo(
+          slides[i + 1], 
+          { yPercent: 100, opacity: 0 }, 
+          { yPercent: 0, opacity: 1, duration: animDuration, ease: 'power2.inOut' }, 
+          startTime
+        );
       }
     });
 
