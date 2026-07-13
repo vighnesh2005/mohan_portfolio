@@ -40,6 +40,18 @@ export default function ExpertiseSection() {
           },
         });
 
+        // Progress bar animation
+        gsap.to('.expertise-progress-bar', {
+          scaleX: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: () => `+=${scrubDuration()}`,
+            scrub: true,
+          }
+        });
+
         // Toggle nav class for light text when over dark backgrounds
         const nav = document.querySelector('.site-nav');
         if (nav) {
@@ -135,6 +147,11 @@ export default function ExpertiseSection() {
       ref={sectionRef}
       className="expertise-horizontal-container"
     >
+      {/* Progress Indicator */}
+      <div className="expertise-progress-container" aria-hidden="true">
+        <div className="expertise-progress-bar" />
+      </div>
+
       <div className="expertise-sticky-wrapper">
         <div ref={trackRef} className="expertise-slides-track">
           {expertiseSectors.map((sector, idx) => (
