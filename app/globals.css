@@ -970,7 +970,7 @@ body {
   position: relative;
   background: var(--bg);
   min-height: 80vh;
-  padding: clamp(100px, 12vw, 160px) clamp(24px, 8vw, 120px);
+  padding: clamp(80px, 8vw, 120px) clamp(16px, 2vw, 32px); /* Greatly reduced side padding */
   border-top: 1px solid rgba(25, 55, 92, 0.1);
   overflow: hidden;
   z-index: 2;
@@ -988,17 +988,17 @@ body {
 .premium-container {
   position: relative;
   z-index: 1;
-  max-width: 1600px; /* Made larger */
-  width: 95%;
+  max-width: none; /* Removed max-width to allow full bleed */
+  width: 98%; /* Occupy almost full width */
   margin: 0 auto;
 }
 
 .bento-layout {
   display: flex;
   align-items: stretch;
-  /* Connected bento design */
   gap: 0;
   background: transparent;
+  min-height: 85vh; /* Make bento grid occupy almost full viewport height */
   overflow: hidden; /* Keeps outer edges clean with margin collapse */
 }
 
@@ -1181,33 +1181,15 @@ body {
   }
 }
 
-/* BENTO TINTS */
-.bento-main { background-color: #F87171; } /* Vibrant Red */
-.bento-tl { background-color: #60A5FA; }   /* Vibrant Blue */
-.bento-tr { background-color: #A78BFA; }   /* Vibrant Violet */
-.bento-bl { background-color: #34D399; }   /* Vibrant Emerald */
-.bento-br { background-color: #FBBF24; }   /* Vibrant Amber */
+/* EXECUTIVE BENTO TINTS */
+.bento-main { background-color: #FCFBF8; } /* Ivory */
+.bento-tl { background-color: #F8F9FA; }   /* Light Slate */
+.bento-tr { background-color: #FDF8F5; }   /* Warm Beige */
+.bento-bl { background-color: #F6F9F8; }   /* Light Sage */
+.bento-br { background-color: #FCF7F7; }   /* Soft Burgundy Tint */
 
-.bento-main:hover { background-color: #EF4444; }
-.bento-tl:hover { background-color: #3B82F6; }
-.bento-tr:hover { background-color: #8B5CF6; }
-.bento-bl:hover { background-color: #10B981; }
-.bento-br:hover { background-color: #F59E0B; }
-
-/* OVERRIDE TEXT COLOR FOR VIBRANT BENTO BOXES */
-.bento-box .premium-heading,
-.bento-box .premium-paragraph,
-.bento-box .premium-paragraph strong,
-.bento-box .premium-eyebrow,
-.bento-box .qual-item,
-.bento-box .card-title,
-.bento-box .card-subtitle,
-.bento-box .card-desc,
-.bento-box .card-icon-wrapper {
-  color: #ffffff;
-}
-
-.bento-box .qual-dot {
-  background-color: #ffffff;
-}
-
+.bento-main:hover { background-color: #ffffff; }
+.bento-tl:hover { background-color: #ffffff; }
+.bento-tr:hover { background-color: #ffffff; }
+.bento-bl:hover { background-color: #ffffff; }
+.bento-br:hover { background-color: #ffffff; }
