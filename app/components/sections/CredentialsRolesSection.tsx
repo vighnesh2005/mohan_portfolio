@@ -25,31 +25,31 @@ export default function CredentialsRolesSection() {
       tl.fromTo(
         '.bento-main',
         { x: -120, clipPath: 'inset(0 100% 0 0)' }, // Clipped fully from the right (meaning 0 width starting at left)
-        { x: 0, clipPath: 'inset(0 0% 0 0)', duration: 1.6, ease: 'power3.out' },
+        { x: 0, clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power3.out' },
         0
       )
       .fromTo(
         '.bento-tl',
         { y: -120, clipPath: 'inset(0 0 100% 0)' }, // Clipped fully from bottom (0 height at top)
-        { y: 0, clipPath: 'inset(0 0 0% 0)', duration: 1.6, ease: 'power3.out' },
+        { y: 0, clipPath: 'inset(0 0 0% 0)', duration: 1.0, ease: 'power3.out' },
         0
       )
       .fromTo(
         '.bento-tr',
         { x: 120, clipPath: 'inset(0 0 0 100%)' }, // Clipped fully from left (0 width at right)
-        { x: 0, clipPath: 'inset(0 0 0 0%)', duration: 1.6, ease: 'power3.out' },
+        { x: 0, clipPath: 'inset(0 0 0 0%)', duration: 1.0, ease: 'power3.out' },
         0
       )
       .fromTo(
         '.bento-bl',
         { x: -120, clipPath: 'inset(0 100% 0 0)' }, // Clipped fully from right (0 width at left)
-        { x: 0, clipPath: 'inset(0 0% 0 0)', duration: 1.6, ease: 'power3.out' },
+        { x: 0, clipPath: 'inset(0 0% 0 0)', duration: 1.0, ease: 'power3.out' },
         0
       )
       .fromTo(
         '.bento-br',
         { y: 120, clipPath: 'inset(100% 0 0 0)' }, // Clipped fully from top (0 height at bottom)
-        { y: 0, clipPath: 'inset(0% 0 0 0)', duration: 1.6, ease: 'power3.out' },
+        { y: 0, clipPath: 'inset(0% 0 0 0)', duration: 1.0, ease: 'power3.out' },
         0
       );
 

@@ -1216,3 +1216,406 @@ body {
     margin-bottom: 24px;
   }
 }
+/* =======================================================
+   ECOSYSTEM PIE CHART SECTION
+   ======================================================= */
+@property --sweep {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.ecosystem-section {
+  --sweep: 0deg;
+  position: relative;
+  background: var(--bg);
+  padding: clamp(40px, 4vw, 60px) 24px;
+  border-top: 1px solid rgba(25, 55, 92, 0.1);
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Decorative Corner SVGs */
+.ecosystem-graphic-anchor {
+  position: absolute;
+  width: 45vmin;
+  height: 45vmin;
+  min-width: 150px; /* Reduced to avoid eating mobile space */
+  opacity: 0.15; /* Faded per request */
+  color: var(--navy);
+  pointer-events: none;
+  z-index: 1; /* Pushed above the background to ensure visibility */
+}
+
+.ecosystem-graphic-anchor.top-left {
+  top: 0%;
+  left: 0%;
+}
+
+.ecosystem-graphic-anchor.bottom-right {
+  bottom: 0%;
+  right: 0%;
+  transform: rotate(180deg);
+}
+
+.ecosystem-split-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: clamp(24px, 4vw, 60px); /* Increased gap to prevent overlap */
+  position: relative;
+  z-index: 2; /* Content sits above SVGs */
+}
+
+.side-heading {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.left-heading h2 {
+  margin: 0;
+  text-align: right;
+  color: var(--navy);
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.right-heading h2 {
+  margin: 0;
+  text-align: left;
+  color: var(--navy);
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.pie-chart-wrapper {
+  flex: 0 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  width: min(90vw, 450px);
+  aspect-ratio: 1;
+}
+
+.pie-chart-mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  mask-image: conic-gradient(from 0deg, black var(--sweep), transparent var(--sweep));
+  -webkit-mask-image: conic-gradient(from 0deg, black var(--sweep), transparent var(--sweep));
+}
+
+.pie-chart-rotate-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  will-change: transform;
+}
+
+.pie-slice {
+  position: relative;
+  display: flex;
+  padding: 40px;
+  cursor: crosshair;
+  transition: filter 0.3s ease;
+  color: var(--bg);
+  border: 1px solid rgba(25, 55, 92, 0.4);
+}
+
+.pie-slice:hover {
+  filter: brightness(1.15);
+  z-index: 100;
+}
+
+.pie-slice.top-left { 
+  background: #1E3F20; 
+  border-radius: 100% 0 0 0;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.pie-slice.top-right { 
+  background: #4A151A; 
+  border-radius: 0 100% 0 0;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.pie-slice.bottom-left { 
+  background: #1C1A4A; 
+  border-radius: 0 0 0 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.pie-slice.bottom-right { 
+  background: #0B2B33; 
+  border-radius: 0 0 100% 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.slice-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 200px;
+}
+
+.top-left .slice-content { text-align: right; align-items: flex-end; }
+.top-right .slice-content { text-align: left; align-items: flex-start; }
+.bottom-left .slice-content { text-align: right; align-items: flex-end; }
+.bottom-right .slice-content { text-align: left; align-items: flex-start; }
+
+.slice-icon {
+  width: 32px;
+  height: 32px;
+  color: inherit;
+  margin-bottom: 8px;
+}
+
+.slice-title {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: inherit;
+  margin: 0;
+}
+
+/* Popout Card */
+.popout-card {
+  position: absolute;
+  width: max-content;
+  max-width: 220px;
+  padding: 16px 20px;
+  border-radius: 0; /* Sharp borders */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: -6px; /* Internal border */
+  z-index: -1; /* Slides out from UNDER the pie slice */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popout-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Base Hidden Positions (Centered under the slice corners) & Custom Colors */
+.pie-slice.top-left .popout-card { 
+  top: 20%; left: 20%; transform: translate(-50%, -50%) scale(0.6); 
+  background: #1E3F20; color: #ffffff;
+}
+.pie-slice.top-right .popout-card { 
+  top: 20%; right: 20%; transform: translate(50%, -50%) scale(0.6); 
+  background: #4A151A; color: #ffffff;
+}
+.pie-slice.bottom-left .popout-card { 
+  bottom: 20%; left: 20%; transform: translate(-50%, 50%) scale(0.6); 
+  background: #1C1A4A; color: #ffffff;
+}
+.pie-slice.bottom-right .popout-card { 
+  bottom: 20%; right: 20%; transform: translate(50%, 50%) scale(0.6); 
+  background: #0B2B33; color: #ffffff;
+}
+
+/* Hover Extended Positions (Slides out close to pie chart without touching) */
+.pie-slice.top-left:hover .popout-card { transform: translate(calc(-100% + 15px), calc(-100% + 15px)) scale(1); opacity: 1; }
+.pie-slice.top-right:hover .popout-card { transform: translate(calc(100% - 15px), calc(-100% + 15px)) scale(1); opacity: 1; }
+.pie-slice.bottom-left:hover .popout-card { transform: translate(calc(-100% + 15px), calc(100% - 15px)) scale(1); opacity: 1; }
+.pie-slice.bottom-right:hover .popout-card { transform: translate(calc(100% - 15px), calc(100% - 15px)) scale(1); opacity: 1; }
+
+.pie-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: var(--bg);
+  border-radius: 50%;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.15);
+  border: 4px solid var(--navy);
+}
+
+.center-inner {
+  text-align: center;
+}
+
+.center-name {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+@media (max-width: 1024px) {
+  .ecosystem-split-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .side-heading {
+    width: 100%;
+  }
+  .left-heading h2, .right-heading h2 {
+    text-align: center;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+  /* Both headings stack at the top */
+  .left-heading { order: 1; }
+  .right-heading { order: 2; margin-top: -12px; }
+  /* Pie chart comes after both headings, pushed down to avoid scaling overlap */
+  .pie-chart-wrapper { order: 3; margin-top: 48px; width: min(90vw, 380px); }
+}
+
+@media (max-width: 768px) {
+  .pie-chart-mask { width: 100%; }
+  .pie-slice { padding: 20px; }
+  .slice-content { max-width: 130px; }
+  .slice-title { font-size: 1rem; }
+  .slice-desc { font-size: 0.8rem; }
+  .pie-center { width: 100px; height: 100px; border-width: 3px; }
+  .center-name { font-size: 0.8rem; }
+}
+/* =======================================================
+   CONTACT SECTION
+   ======================================================= */
+
+.premium-contact-section {
+  position: relative;
+  z-index: 10;
+  height: 100vh; /* Exactly fit the screen */
+  height: 100dvh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-top: 1px solid rgba(25, 55, 92, 0.1);
+  overflow: hidden;
+}
+
+.contact-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 40px); /* Tighter gap to ensure fit */
+  width: 100%;
+}
+
+.contact-massive-text {
+  font-family: var(--font-sora), sans-serif;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.contact-massive-text .text-highlight {
+  color: var(--hero-text); /* Matches Navbar text color */
+}
+
+.contact-actions {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Use nav-cta button from navbar but theme it for Contact section */
+/* Email Button (Dark Teal) */
+.premium-contact-section .nav-cta {
+  background-color: transparent;
+  color: #0B2B33;
+  border-color: #0B2B33;
+  min-height: 60px;
+  padding: 0 40px;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+.premium-contact-section .nav-cta-bg {
+  background-color: #0B2B33;
+}
+
+.premium-contact-section .nav-cta-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.premium-contact-section .nav-cta:hover {
+  color: #ffffff !important;
+  border-color: #0B2B33 !important;
+}
+
+/* Specific styling for the LinkedIn variant (Inverted) */
+.premium-contact-section .linkedin-btn {
+  background-color: #0077b5;
+  color: #ffffff;
+  border-color: #0077b5;
+}
+.premium-contact-section .linkedin-btn .nav-cta-bg {
+  background-color: var(--bg); /* Appears transparent */
+}
+.premium-contact-section .linkedin-btn:hover {
+  color: #0077b5 !important;
+  border-color: #0077b5 !important;
+}
+
+/* Weighing Scale SVG Graphic */
+.contact-graphic-anchor {
+  position: absolute;
+  right: 8%;
+  bottom: 15%;
+  width: 80vmin;
+  height: 80vmin;
+  min-width: 500px;
+  color: var(--navy);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-ending {
+  margin-top: clamp(20px, 4vw, 40px);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--navy);
+  opacity: 0.8;
+  border-top: 1px solid rgba(25, 55, 92, 0.2);
+  padding-top: 32px;
+}
+
+.contact-ending p {
+  margin: 0 0 8px 0;
+}
+
+.ending-sub {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .contact-actions {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+}

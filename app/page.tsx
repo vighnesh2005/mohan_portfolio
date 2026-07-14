@@ -11,6 +11,7 @@ import AboutSection from './components/sections/AboutSection';
 import ExpertiseSection from './components/sections/ExpertiseSection';
 import ServicesSection from './components/sections/ServicesSection';
 import CredentialsRolesSection from './components/sections/CredentialsRolesSection';
+import EcosystemSection from './components/sections/EcosystemSection';
 import GenericContentSection from './components/sections/GenericContentSection';
 import ContactSection from './components/sections/ContactSection';
 import { sections } from './data/constants';
@@ -89,7 +90,7 @@ export default function Home() {
   }, []);
 
   // Filter out sections handled by bespoke components
-  const genericSections = sections.filter(s => s.id !== 'about' && s.id !== 'expertise' && s.id !== 'credentials-roles');
+  const genericSections = sections.filter(s => s.id !== 'about' && s.id !== 'expertise' && s.id !== 'credentials-roles' && s.id !== 'ecosystem');
 
   return (
     <main className="page-shell">
@@ -103,6 +104,7 @@ export default function Home() {
         <ExpertiseSection />
         <ServicesSection />
         <CredentialsRolesSection />
+        <EcosystemSection />
         
         {genericSections.map((section) => (
           <GenericContentSection 

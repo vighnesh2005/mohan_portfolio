@@ -10,42 +10,42 @@ export const expertiseSectors = [
   {
     title: 'MSME & Agribusiness',
     description: 'Engineering institutional compliance and financial architecture for rural supply chains, manufacturing entities, and agribusiness trading networks. We bridge the gap between agrarian fields and modern markets through audit-ready financial frameworks.',
-    bgColor: '#0B4A28',
+    bgColor: '#1E3F20', // Forest Green
     bgClass: 'texture-agri',
     proofElements: ['Manufacturing', 'Trading', 'Rural Supply Chains'],
   },
   {
     title: 'Retail & D2C Brands',
     description: 'Structuring statutory compliance, tax advisory, and scaling architectures for high-growth consumer-facing retail and D2C personal care lines. Ensuring seamless accounting structures that support rapid commercial expansion.',
-    bgColor: '#8F2326',
+    bgColor: '#4A151A', // Deep Burgundy
     bgClass: 'texture-retail',
     proofElements: ['GST', 'D2C', 'Marketplace Compliance'],
   },
   {
     title: 'Food, F&B & FMCG',
     description: 'Fostering financial integrity and navigating regulatory frameworks for food processing units, restaurants, and fast-moving consumer goods. We help brands manage complex cost margins and achieve sustainable scale.',
-    bgColor: '#580D3D',
+    bgColor: '#3A112A', // Deep Plum
     bgClass: 'texture-food',
     proofElements: ['Financial Integrity', 'Regulatory Strategy'],
   },
   {
     title: 'E-Commerce',
     description: 'Managing complex multi-GSTIN frameworks, digital marketplace reporting, and transaction reconciliation for online sellers. We resolve the operational complexities of digital retail so you can focus on scale.',
-    bgColor: '#0E4856',
+    bgColor: '#0B2B33', // Dark Teal
     bgClass: 'texture-ecommerce',
     proofElements: ['Multi-GSTIN', 'Marketplace Reporting'],
   },
   {
     title: 'Farmer Producer Companies',
     description: 'Shaping the operational blueprint for 100+ Farmer Producer Companies (FPCs) across Andhra Pradesh. Leading formation, governance design, board setup, and ROC compliance to build institutional trust.',
-    bgColor: '#BD4828',
+    bgColor: '#4A2511', // Deep Rust
     bgClass: 'texture-fpc',
     proofElements: ['100+ FPCs Guided'],
   },
   {
     title: 'Nonprofits & Foundations',
     description: 'Upholding structural governance, compliance audits, and tax registrations for social impact ventures and foundations. We keep your mission legally secure, financially transparent, and fully optimized.',
-    bgColor: '#3530B0',
+    bgColor: '#1C1A4A', // Royal Indigo
     bgClass: 'texture-nonprofit',
     proofElements: ['Governance', 'Transparency', 'Compliance'],
   },
